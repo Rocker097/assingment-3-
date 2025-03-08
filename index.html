@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriWorkout - Personalized Diet & Exercise Planner</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FF9800;
+            --light-bg: #f9f9f9;
+            --dark-text: #333;
+            --light-text: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--light-text);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #666;
+        }
+        
+        .main-content {
+            padding: 2rem 0;
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .form-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .results-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .result-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            min-height: 300px;
+        }
+        
+        .exercise-item, .meal-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .exercise-item:last-child, .meal-item:last-child {
+            border-bottom: none;
+        }
+        
+        .meal-category {
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .nutrition-info {
+            background-color: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                    <line x1="6" y1="1" x2="6" y2="4"></line>
+                    <line x1="10" y1="1" x2="10" y2="4"></line>
+                    <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+                Nutri<span>Workout</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Your Personalized Diet & Exercise Planner</h1>
+            <p>Get tailored exercise recommendations and meal plans based on your weight and dietary preferences, complete with nutrition information.</p>
+        </div>
+    </section>
+    
+    <main class="main-content">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">Generate Your Personalized Plan</h2>
+                <form id="planner-form">
+                    <div class="form-group">
+                        <label for="weight">Your Weight (in pounds)</label>
+                        <input type="number" id="weight" name="weight" placeholder="Enter your weight" required min="80" max="350">
+                    </div>
+                    <div class="form-group">
+                        <label for="diet">Your Diet Preference</label>
+                        <select id="diet" name="diet" required>
+                            <option value="" disabled selected>Select your diet type</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="paleo">Paleo</option>
+                            <option value="keto">Keto</option>
+                            <option value="mediterranean">Mediterranean</option>
+                            <option value="glutenfree">Gluten-Free</option>
+                            <option value="dairyfree">Dairy-Free</option>
+                        </select>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Generate Plan</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="results-container" id="results">
+                <div class="result-card">
+                    <div class="card-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        </svg>
+                        Recommended Exercises
+                    </div>
+                    <div class="card-content" id="exercise-results">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            <p>Enter your information and click "Generate Plan" to see exercise recommendations</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="card-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                        Personalized Meal Plan
+                    </div>
+                    <div class="card-content" id="meal-results">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            <p>Enter your information and click "Generate Plan" to see your personalized meal plan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 NutriWorkout. All rights reserved.</p>
+            <p>Created for demonstration purposes</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Sample data to use for demo
+        const exerciseData = {
+            "125": [
+                ["Walking (3.5 mph)", 120],
+                ["Bicycling (10-12 mph)", 240],
+                ["Swimming (freestyle, moderate)", 300],
+                ["Weight lifting (general)", 180],
+                ["Yoga", 120],
+                ["Running (6 mph)", 300],
+                ["Dancing (aerobic)", 165],
+                ["Hiking", 240],
+                ["Elliptical trainer", 270],
+                ["Stair climbing", 180]
+            ],
+            "155": [
+                ["Walking (3.5 mph)", 149],
+                ["Bicycling (10-12 mph)", 298],
+                ["Swimming (freestyle, moderate)", 372],
+                ["Weight lifting (general)", 223],
+                ["Yoga", 149],
+                ["Running (6 mph)", 372],
+                ["Dancing (aerobic)", 205],
+                ["Hiking", 298],
+                ["Elliptical trainer", 335],
+                ["Stair climbing", 223]
+            ],
+            "185": [
+                ["Walking (3.5 mph)", 178],
+                ["Bicycling (10-12 mph)", 355],
+                ["Swimming (freestyle, moderate)", 444],
+                ["Weight lifting (general)", 266],
+                ["Yoga", 178],
+                ["Running (6 mph)", 444],
+                ["Dancing (aerobic)", 244],
+                ["Hiking", 355],
+                ["Elliptical trainer", 400],
+                ["Stair climbing", 266]
+            ]
+        };
+        
+        const mealData = {
+            "vegan": [
+                "Tofu Scramble with Vegetables",
+                "Chickpea Buddha Bowl",
+                "Lentil Soup with Fresh Herbs",
+                "Mushroom and Spinach Risotto",
+                "Vegan Pad Thai",
+                "Roasted Vegetable Tacos",
+                "Quinoa Stuffed Bell Peppers"
+            ],
+            "vegetarian": [
+                "Greek Yogurt with Berries and Granola",
+                "Mediterranean Vegetable Frittata",
+                "Caprese Sandwich with Fresh Mozzarella",
+                "Spinach and Feta Stuffed Portobello Mushrooms",
+                "Vegetable Curry with Basmati Rice",
+                "Eggplant Parmesan",
+                "Three Bean Chili"
+            ],
+            "paleo": [
+                "Avocado and Bacon Omelette",
+                "Grilled Chicken Salad with Olive Oil Dressing",
+                "Baked Salmon with Roasted Asparagus",
+                "Beef and Vegetable Stir Fry",
+                "Turkey and Sweet Potato Skillet",
+                "Zucchini Noodles with Shrimp",
+                "Herb Crusted Pork Tenderloin"
+            ],
+            "keto": [
+                "Cream Cheese Pancakes",
+                "Bacon and Cheese Crustless Quiche",
+                "Avocado and Tuna Salad",
+                "Keto Beef Chili",
+                "Butter Chicken with Cauliflower Rice",
+                "Zucchini Lasagna",
+                "Garlic Butter Steak with Mushrooms"
+            ],
+            "mediterranean": [
+                "Greek Yogurt with Honey and Walnuts",
+                "Mediterranean Breakfast Bowl",
+                "Hummus and Vegetable Wrap",
+                "Greek Salad with Grilled Chicken",
+                "Baked Cod with Tomatoes and Olives",
+                "Lemon Herb Mediterranean Pasta",
+                "Grilled Lamb with Tzatziki Sauce"
+            ],
+            "glutenfree": [
+                "Quinoa Breakfast Bowl",
+                "Sweet Potato Toast with Avocado",
+                "Rice Paper Veggie Wraps",
+                "Gluten-Free Pasta with Pesto",
+                "Stuffed Bell Peppers",
+                "Grilled Fish Tacos with Corn Tortillas",
+                "Chickpea and Vegetable Curry"
+            ],
+            "dairyfree": [
+                "Coconut Yogurt with Fresh Fruit",
+                "Avocado Toast with Poached Eggs",
+                "Chicken and Vegetable Stir Fry",
+                "Coconut Curry Soup",
+                "Roasted Salmon with Sweet Potato",
+                "Cashew Cream Pasta",
+                "Grilled Chicken with Mango Salsa"
+            ]
+        };
+        
+        // Simplified nutrition info for demo purposes
+        const nutritionInfo = {
+            "high": { calories: "350-400", protein: "20-25g", carbs: "30-35g", fats: "15-20g" },
+            "medium": { calories: "250-300", protein: "15-20g", carbs: "20-25g", fats: "10-15g" },
+            "low": { calories: "150-200", protein: "10-15g", carbs: "15-20g", fats: "5-10g" }
+        };
+        
+        document.getElementById('planner-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const weight = parseInt(document.getElementById('weight').value);
+            const diet = document.getElementById('diet').value;
+            
+            // Show loading state
+            document.getElementById('exercise-results').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>Generating exercise recommendations...</p></div>';
+            document.getElementById('meal-results').innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>Creating your personalized meal plan...</p></div>';
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                generateResults(weight, diet);
+            }, 1500);
+        });
+        
+        function generateResults(weight, diet) {
+            // Determine which weight category to use
+            let weightCategory;
+            if (weight <= 140) {
+                weightCategory = "125";
+            } else if (weight <= 170) {
+                weightCategory = "155";
+            } else {
+                weightCategory = "185";
+            }
+            
+            // Get 4 random exercises
+            const exercises = getRandomItems(exerciseData[weightCategory], 4);
+            
+            // Get meals for the diet
+            const meals = getMeals(diet);
+            
+            // Display results
+            displayExercises(exercises);
+            displayMeals(meals, diet);
+        }
+        
+        function getRandomItems(array, count) {
+            const shuffled = [...array].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+        
+        function getMeals(diet) {
+            if (!mealData[diet]) {
+                return {
+                    breakfast: ["Sample Breakfast"],
+                    lunch: ["Sample Lunch 1", "Sample Lunch 2"],
+                    dinner: ["Sample Dinner 1", "Sample Dinner 2", "Sample Dinner 3"]
+                };
+            }
+            
+            const allMeals = [...mealData[diet]];
+            const breakfast = [allMeals[0]];
+            const lunch = [allMeals[1], allMeals[2]];
+            const dinner = [allMeals[3], allMeals[4], allMeals[5]];
+            
+            return { breakfast, lunch, dinner };
+        }
+        
+        function displayExercises(exercises) {
+            const container = document.getElementById('exercise-results');
+            let html = '<h3>30-Minute Exercise Recommendations:</h3>';
+            
+            exercises.forEach(exercise => {
+                html += `
+                <div class="exercise-item">
+                    <p>🔥 <strong>${exercise[0]}</strong>: ${exercise[1]} calories burned</p>
+                </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function displayMeals(meals, dietType) {
+            const container = document.getElementById('meal-results');
+            let html = `<h3>Meal Plan for ${dietType.charAt(0).toUpperCase() + dietType.slice(1)} Diet:</h3>`;
+            
+            // Breakfast
+            html += `<div class="meal-category">🥣 Breakfast</div>`;
+            meals.breakfast.forEach(meal => {
+                const nutritionLevel = getRandomNutritionLevel();
+                html += `
+                <div class="meal-item">
+                    <p>${meal}</p>
+                    <div class="nutrition-info">
+                        🔹 Calories: ${nutritionInfo[nutritionLevel].calories} | Protein: ${nutritionInfo[nutritionLevel].protein} | 
+                        Carbs: ${nutritionInfo[nutritionLevel].carbs} | Fats: ${nutritionInfo[nutritionLevel].fats}
+                    </div>
+                </div>
+                `;
+            });
+            
+            // Lunch
+            html += `<div class="meal-category">🍛 Lunch</div>`;
+            meals.lunch.forEach(meal => {
+                const nutritionLevel = getRandomNutritionLevel();
+                html += `
+                <div class="meal-item">
+                    <p>${meal}</p>
+                    <div class="nutrition-info">
+                        🔹 Calories: ${nutritionInfo[nutritionLevel].calories} | Protein: ${nutritionInfo[nutritionLevel].protein} | 
+                        Carbs: ${nutritionInfo[nutritionLevel].carbs} | Fats: ${nutritionInfo[nutritionLevel].fats}
+                    </div>
+                </div>
+                `;
+            });
+            
+            // Dinner
+            html += `<div class="meal-category">🍽️ Main Course</div>`;
+            meals.dinner.forEach(meal => {
+                const nutritionLevel = getRandomNutritionLevel();
+                html += `
+                <div class="meal-item">
+                    <p>${meal}</p>
+                    <div class="nutrition-info">
+                        🔹 Calories: ${nutritionInfo[nutritionLevel].calories} | Protein: ${nutritionInfo[nutritionLevel].protein} | 
+                        Carbs: ${nutritionInfo[nutritionLevel].carbs} | Fats: ${nutritionInfo[nutritionLevel].fats}
+                    </div>
+                </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        function getRandomNutritionLevel() {
+            const levels = ["low", "medium", "high"];
+            return levels[Math.floor(Math.random() * levels.length)];
+        }
+    </script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
